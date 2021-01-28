@@ -20,8 +20,11 @@ public class StudentDb {
 //    public StudentDb(ArrayList<Student> students) {
 //        this.students = students;
 //    }
-    public void put(String id, Student student) {
-        students.put(id, student);
+    public void put(Student student) throws RuntimeException{
+        if(contains(student)) {
+            throw new RuntimeException("The value for key - "  + student.getId() + " " + "- already exists!");
+        }
+        students.put(student.getId(), student);
     }
 
 //    public void remove1(Student student) {
@@ -48,6 +51,10 @@ public class StudentDb {
     @Override
     public int hashCode() {
         return Objects.hash(students);
+    }
+
+    public boolean contains(Student student){
+        return students.containsKey(student.getId());
     }
 //        Student[] updatedData = new Student[students.length - 1];
 //
