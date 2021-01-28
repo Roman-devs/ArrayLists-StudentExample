@@ -20,11 +20,11 @@ public class AppMain {
         Student student4 = new Student("4", "Gandalf", "Witchcraft");
         Student student5 = new Student("5", "Voldemort", "Magic");
         //
-        studentDataBase.put(student1.getId(), student1);;
-        studentDataBase.put(student2.getId(), student1);;
-        studentDataBase.put(student3.getId(), student1);;
-        studentDataBase.put(student4.getId(), student1);;
-        studentDataBase.put(student5.getId(), student1);;
+        studentDataBase.put(student1);
+        studentDataBase.put(student1);
+        studentDataBase.put(student1);
+        studentDataBase.put(student1);
+        studentDataBase.put(student1);
         // Print All Students included in StudentDataBase before deletion
 //        printAllStudents(studentDataBase);
 //        // Select ID to be removed
