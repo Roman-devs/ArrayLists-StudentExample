@@ -2,10 +2,7 @@ package de.neuefische.objectorientation.db;
 
 import de.neuefische.objectorientation.model.Student;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class StudentDb {
     // Member Variables
@@ -55,6 +52,13 @@ public class StudentDb {
 
     public boolean contains(Student student){
         return students.containsKey(student.getId());
+    }
+
+    public Optional<Student>  findByID(String ID){
+        if (students.containsKey(ID)){
+            return Optional.of(students.get(ID));
+        }
+        return Optional.empty();
     }
 //        Student[] updatedData = new Student[students.length - 1];
 //

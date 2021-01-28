@@ -1,17 +1,21 @@
 package de.neuefische.objectorientation.db;
 
 import de.neuefische.objectorientation.model.Student;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class StudentDbTest {
     @Test
+    @DisplayName("Testing remove Method")
     public void studentDBTest() {
 
         // List being created and Deleted from
@@ -45,6 +49,7 @@ public class StudentDbTest {
     }
 
     @Test
+    @DisplayName("Testing Exception try/catch")
     public void studentDBExceptionTest() {
         // List being created and Deleted from
         StudentDb studentDataBase = new StudentDb(new HashMap<>());
@@ -70,4 +75,33 @@ public class StudentDbTest {
 
     }
 
+    @Test
+    @DisplayName("Testing the Optional return type in case the return is valid and not null")
+    public void studentDBOptionalTestFindByIDFail(){
+        StudentDb studentDataBase = new StudentDb(new HashMap<>());
+        Student student1 = new Student("1", "Frank", "Sport");
+        Student student2 = new Student("2", "Horst", "Tabletennis");
+        studentDataBase.put(student1);
+        studentDataBase.put(student2);
+        Optional<Student> actual = studentDataBase.findByID("3");
+        Optional<Student> expected = Optional.empty();
+        assertEquals(actual, expected);
+
+
+    }
+
+    @Test
+    @DisplayName("Testing the Optional return type in case the return is invalid")
+    public void studentDBOptionalTestFindByID(){
+        StudentDb studentDataBase = new StudentDb(new HashMap<>());
+        Student student1 = new Student("1", "Frank", "Sport");
+        Student student2 = new Student("2", "Horst", "Tabletennis");
+        studentDataBase.put(student1);
+        studentDataBase.put(student2);
+        Optional<Student> actual = studentDataBase.findByID("2");
+        Optional<Student> expected = Optional.of(student2);
+        assertEquals(actual, expected);
+
+
+    }
 }
